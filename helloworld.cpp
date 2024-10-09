@@ -130,6 +130,20 @@ int main()
     x = 3.99;
     z = floor(x); // z == 3 // rounds down
 
+    // conditionals
+    int userAge;
+    std::cout << "Enter Your User Age: ";
+    std::cin >> userAge;
+
+    if (userAge >= 18)
+    {
+        std::cout << "You are an adult" << '\n';
+    }
+    else
+    {
+        std::cout << "You are underage" << '\n';
+    }
+
     // successful return condition
     return 0;
 }
