@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 // namespaces allow for the redeclaration of variables, see the std::cout for namespaces below from line 47
 namespace first
@@ -85,7 +86,7 @@ int main()
     std::string fullname;
     std::cout << "What is your full name?";
     std::getline(std::cin, fullname);
-    std::cout << "Hello " << fullname;
+    std::cout << "Hello " << fullname << '\n';
 
     // ! IMPORTANT ! getline() works well for input that may contain a space, but you cannot use it AFTER using a std::cin,
     // std::cin adds a '\n' char after the input, which is then immediately consumed by the std::getline(), thus skipping the input.
@@ -97,7 +98,7 @@ int main()
     std::cout << "Type a string with a space: ";
     std::string stringWithSpace;
     std::getline(std::cin >> std::ws, stringWithSpace);
-    std::cout << stringWithSpace;
+    std::cout << stringWithSpace << '\n';
 
     int age;
     std::cout << "What is your age?: ";
@@ -105,6 +106,29 @@ int main()
 
     std::cout << "Hello, " << name << '\n';
     std::cout << "You are " << age << " years old" << '\n';
+
+    // helpful arithmatic
+    double x = 3;
+    double y = 4;
+    double z;
+
+    // max
+    z = std::max(x, y); // z == 4
+    // min
+    z = std::min(x, y); // z == 4
+    // power
+    z = pow(2, 3); // z == 8
+    z = pow(2, 4); // z == 16
+    // square root
+    z = sqrt(9); // z == 3
+    // absolute
+    z = abs(-3); // z == 3
+    // round
+    x = 3.14;
+    z = round(x); // z == 3 // rounds to closest
+    z = ceil(x);  // z == 4 // rounds up
+    x = 3.99;
+    z = floor(x); // z == 3 // rounds down
 
     // successful return condition
     return 0;
