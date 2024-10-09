@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// namespaces allow for the redeclaration of variables, see the std::cout for namespaces below
+// namespaces allow for the redeclaration of variables, see the std::cout for namespaces below from line 47
 namespace first
 {
     int a = 1;
@@ -35,7 +35,6 @@ int main()
     // typedef is pretty oldschool, prefer to use `using` as it works better with templates
     using string_t = std::string;
     string_t hello = "world";
-    std::cout << hello << '\n';
 
     // const are also available
     // const has a naming convention of the variable being all uppercase, multiword variables are snake case
@@ -65,7 +64,7 @@ int main()
     count = 2;         // count set at 2
     count *= 10;       // count == 20
     count /= 2;        // count == 10
-    count /= 3;        // count == 3 ! remember it's an int so you'll lose decimals in division
+    count /= 3;        // count == 3 !! remember it's an int so you'll lose decimals in division
     count %= 2;        // count == 1
 
     // type conversion
@@ -80,6 +79,32 @@ int main()
     int totalQuestions = 10;
     double score = correctAnswers / totalQuestions * 100;                // score = 0 because the initial division resulted in an int = 0.8, which was truncated to 0. Then 0 * 100 == 0;
     double correctScore = correctAnswers / (double)totalQuestions * 100; // correctScore = 80. I'm actually not sure why you don't have to cast both to doubles but hey free bytes.
+
+    // user input
+    // cin works well for string inputs but breaks on a space char, the terminal stops reading after the space
+    std::string fullname;
+    std::cout << "What is your full name?";
+    std::getline(std::cin, fullname);
+    std::cout << "Hello " << fullname;
+
+    // ! IMPORTANT ! getline() works well for input that may contain a space, but you cannot use it AFTER using a std::cin,
+    // std::cin adds a '\n' char after the input, which is then immediately consumed by the std::getline(), thus skipping the input.
+    // you can add a std::ws to remove whitespace chars from getline if you need to use it afterwards.
+    std::string name;
+    std::cout << "What is your name?: ";
+    std::cin >> name;
+
+    std::cout << "Type a string with a space: ";
+    std::string stringWithSpace;
+    std::getline(std::cin >> std::ws, stringWithSpace);
+    std::cout << stringWithSpace;
+
+    int age;
+    std::cout << "What is your age?: ";
+    std::cin >> age;
+
+    std::cout << "Hello, " << name << '\n';
+    std::cout << "You are " << age << " years old" << '\n';
 
     // successful return condition
     return 0;
