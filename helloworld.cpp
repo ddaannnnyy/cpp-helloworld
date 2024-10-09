@@ -29,7 +29,7 @@ int main()
 
     // you can shortcut advanced types with a typedef, so instead of the built in pairlist from the vector namespace, we can just call it a pairlist_t
     // it's a naming convention to end custom type definitions with _t to stop conflicts with variables
-    typedef std::vector<std::pair<std::string, int > > pairlist_t;
+    typedef std::vector<std::pair<std::string, int>> pairlist_t;
     // then...
     pairlist_t pairlist;
     // typedef is pretty oldschool, prefer to use `using` as it works better with templates
@@ -53,6 +53,33 @@ int main()
     // to fetch a variable from a namespace WITHOUT overriding the whole local scope you prefix it with namespace:: e.g. std is a built in namespace
     // NOTE because c++ is an oldschool top down language you have to define the namespace BEFORE you can use it.
     std::cout << second::a << std::endl;
+
+    // incrementation is normal
+    int count = 0;
+    count = count + 1; // count == 1
+    count += 1;        // count == 2
+    count++;           // count == 3
+    count = count - 1; // count == 2
+    count -= 1;        // count == 1
+    count--;           // count == 0
+    count = 2;         // count set at 2
+    count *= 10;       // count == 20
+    count /= 2;        // count == 10
+    count /= 3;        // count == 3 ! remember it's an int so you'll lose decimals in division
+    count %= 2;        // count == 1
+
+    // type conversion
+    // implicit
+    int implicitDoubleToInt = 3.14;         // implicitDoubleToInt == 3
+    double explicitDoubleToInt = (int)3.14; // explicitDoubleToInt == 3
+
+    char implicitIntToChar = 100;   // std::cout << implicitIntToChar returns 'd' (ASCII lookup for decimal 100)
+    std::cout << (char)100 << '\n'; // this also prints 'd'
+
+    int correctAnswers = 8;
+    int totalQuestions = 10;
+    double score = correctAnswers / totalQuestions * 100;                // score = 0 because the initial division resulted in an int = 0.8, which was truncated to 0. Then 0 * 100 == 0;
+    double correctScore = correctAnswers / (double)totalQuestions * 100; // correctScore = 80. I'm actually not sure why you don't have to cast both to doubles but hey free bytes.
 
     // successful return condition
     return 0;
